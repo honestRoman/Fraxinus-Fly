@@ -40,7 +40,6 @@ class ReceivableView extends GetView<OutstandingController> {
               btnName: AppString.downloadPdf,
               onTap: () {
                 controller.genarateRecivePDFApi();
-                // Get.toNamed(Routes.SHOW_REPORT);
               },
             ),
             Gap(20),

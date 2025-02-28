@@ -25,38 +25,6 @@ class ItemListController extends GetxController {
   int itemId = 0;
   int brandId = 0;
   int categoryId = 0;
-  List<commonModel> quotationList = [
-    commonModel(
-        itemName: "Item 1",
-        itemCode: "001",
-        unitCode: "pcs",
-        basicPrice: "100.0",
-        purchasePrice: "90.0",
-        purchaseVatAmt: "10.0",
-        discount: "5%",
-        itemValue: "85.0",
-        stockQty: "50",
-        branchName: "Brand A",
-        subBrand: "SubBrand A",
-        category: "Category A",
-        subcategory: "SubCategory A",
-        barCodeNo: "12345678908"),
-    commonModel(
-        itemName: "Item 1",
-        itemCode: "001",
-        unitCode: "pcs",
-        basicPrice: "100.0",
-        purchasePrice: "90.0",
-        purchaseVatAmt: "10.0",
-        discount: "5%",
-        itemValue: "85.0",
-        stockQty: "50",
-        branchName: "Brand A",
-        subBrand: "SubBrand A",
-        category: "Category A",
-        subcategory: "SubCategory A",
-        barCodeNo: "12345678908"),
-  ];
 
   void filterItems(String query) {
     filteredItems = Constants.itemList;

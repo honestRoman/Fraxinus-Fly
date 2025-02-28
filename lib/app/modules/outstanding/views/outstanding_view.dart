@@ -1,7 +1,6 @@
 import 'package:fraxinusfly/app/commons/all.dart';
 import 'package:fraxinusfly/app/modules/outstanding/views/payable_view.dart';
 import 'package:fraxinusfly/app/modules/outstanding/views/receivable_view.dart';
-
 import '../controllers/outstanding_controller.dart';
 
 class OutstandingView extends GetView<OutstandingController> {

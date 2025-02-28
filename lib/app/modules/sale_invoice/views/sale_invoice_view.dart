@@ -1,10 +1,8 @@
 import 'package:fraxinusfly/app/modules/sale_invoice/views/sale_invoice_add_view.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-
 import '../../../commons/all.dart';
 import '../../../data/common_widget/common_button.dart';
-import '../../quotation/model/quoation_list_model.dart';
 import '../controllers/sale_invoice_controller.dart';
 import '../model/sales_invoice_model.dart';
 
@@ -20,7 +18,7 @@ class SaleInvoiceView extends GetView<SaleInvoiceController> {
           floatingActionButton: controller.isAdd.value
               ? SizedBox()
               : GestureDetector(
-                  onTap: () async{
+                  onTap: () async {
                     controller.addDateController.text = DateFormat("dd/MM/yyyy")
                         .format(DateTime.now())
                         .toString();
@@ -58,7 +56,8 @@ class SaleInvoiceView extends GetView<SaleInvoiceController> {
                       itemCount: controller.quotationList.length,
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       itemBuilder: (context, index) {
-                        SalesInvoiceData model = controller.quotationList[index];
+                        SalesInvoiceData model =
+                            controller.quotationList[index];
                         return Padding(
                           padding: EdgeInsets.only(bottom: 10),
                           child: DecoratedBox(
@@ -271,8 +270,6 @@ class SaleInvoiceView extends GetView<SaleInvoiceController> {
                                               onTap: () {
                                                 controller.quotationPDFApi(
                                                     model.billId ?? 0);
-                                                // controller.isUpdate = true;
-                                                // controller.quId = (model.quoteId ?? 0).toString();
                                                 controller.update();
                                               },
                                               child:

@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:fraxinusfly/app/data/common_widget/common_textfeild.dart';
 import 'package:fraxinusfly/app/routes/app_pages.dart';
 import 'package:intl/intl.dart';
@@ -150,28 +148,6 @@ class LedgerStatementController extends GetxController {
     update();
   }
 
-  downloadFile(var filePath, var documentUrl) async {
-    try {
-      final filename = filePath;
-      String dir = "/storage/emulated/0/Download";
-      if (await File('$dir/$filename').exists()) return File('$dir/$filename');
-
-      String url = documentUrl;
-
-      var request = await HttpClient().getUrl(Uri.parse(url));
-
-      var response = await request.close();
-
-      var bytes = await consolidateHttpClientResponseBytes(response);
-
-      File file = new File('$dir/$filename');
-
-      await file.writeAsBytes(bytes);
-
-    } catch (err) {
-    }
-  }
-
   Future<void> apiCallSupplier() async {
     FormData formData = FormData.fromMap({});
 
@@ -189,3 +165,4 @@ class LedgerStatementController extends GetxController {
     }
   }
 }
+

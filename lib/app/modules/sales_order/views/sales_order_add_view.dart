@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/gestures.dart';
 import 'package:fraxinusfly/app/commons/all.dart';
-import 'package:fraxinusfly/app/commons/get_storage_data.dart';
 import 'package:fraxinusfly/app/modules/sales_order/controllers/sales_order_controller.dart';
 import 'package:gap/gap.dart';
 import '../../../data/common_widget/common_button.dart';
@@ -346,7 +344,9 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
                         isEnd: true),
                   ],
                 ),
-                if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[
+                if (controller.addInvoiceTypeController.text !=
+                        "Bill of Supply" &&
+                    controller.addGstTypeController.text == "CGST_SGST") ...[
                   TableRow(
                     children: [
                       commonTableText(title: "(+)CGSTTotal"),
@@ -357,7 +357,9 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
                     ],
                   ),
                 ],
-                if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[
+                if (controller.addInvoiceTypeController.text !=
+                        "Bill of Supply" &&
+                    controller.addGstTypeController.text == "CGST_SGST") ...[
                   TableRow(
                     children: [
                       commonTableText(title: "(+)SGSTTotal"),
@@ -368,7 +370,9 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
                     ],
                   ),
                 ],
-                if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text != "CGST_SGST")...[
+                if (controller.addInvoiceTypeController.text !=
+                        "Bill of Supply" &&
+                    controller.addGstTypeController.text != "CGST_SGST") ...[
                   TableRow(
                     children: [
                       commonTableText(title: "(+)IGSTTotal"),
@@ -426,68 +430,7 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
     );
   }
 
-  // Widget itemData() {
-  //   return SingleChildScrollView(
-  //     padding: EdgeInsets.zero,
-  //     scrollDirection: Axis.horizontal,
-  //     dragStartBehavior: DragStartBehavior.start,
-  //     child: DataTable(
-  //       border: TableBorder.all(),
-  //       columns: const <DataColumn>[
-  //         DataColumn(label: Text('ACTION')),
-  //         DataColumn(label: Text('Name')),
-  //         DataColumn(label: Text('UNIT')),
-  //         DataColumn(label: Text('QTY')),
-  //         DataColumn(label: Text('PRICE')),
-  //         DataColumn(label: Text('DISCOUNT(%)')),
-  //         DataColumn(label: Text('DISCOUNT')),
-  //         DataColumn(label: Text('TOTAL DISCOUNT')),
-  //         DataColumn(label: Text('GST TEX')),
-  //         DataColumn(label: Text('NETPRICE\n(INC. TEX)')),
-  //         DataColumn(label: Text('CGSTPER')),
-  //         DataColumn(label: Text('CGSTAMT')),
-  //         DataColumn(label: Text('SGSTPER')),
-  //         DataColumn(label: Text('SGSTAMT')),
-  //         DataColumn(label: Text('IGSTPER')),
-  //         DataColumn(label: Text('IGSTAMT')),
-  //         DataColumn(label: Text('TEXABLE\nAMOUNT')),
-  //       ],
-  //       rows: List.generate(
-  //         controller.itemList.length,
-  //         (index) {
-  //           SaleOrderDetails data = controller.itemList[index];
-  //           return DataRow(
-  //             cells: <DataCell>[
-  //               DataCell(Icon(Icons.delete)),
-  //               DataCell(Text(
-  //                 data.itemName ?? "",
-  //                 maxLines: 2,
-  //               )),
-  //               DataCell(Text(data.unit ?? "")),
-  //               DataCell(Text(data.qty.toString())),
-  //               DataCell(Text(data.price.toString())),
-  //               DataCell(Text(data.discountPer.toString())),
-  //               DataCell(Text(data.discount.toString())),
-  //               DataCell(Text(data.totalDiscount.toString())),
-  //               DataCell(Text(data.gstcodeId.toString())),
-  //               DataCell(Text(data.netPriceINCTax.toString())),
-  //               DataCell(Text(data.cgstPer.toString())),
-  //               DataCell(Text(data.cgstAmount.toString())),
-  //               DataCell(Text(data.sgstPer.toString())),
-  //               DataCell(Text(data.sgstAmount.toString())),
-  //               DataCell(Text(data.igstPer.toString())),
-  //               DataCell(Text(data.igstAmount.toString())),
-  //               DataCell(Text(data.taxableAmount.toString())),
-  //             ],
-  //           );
-  //         },
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget itemData(SalesOrderController controller) {
-    // Define column list
     List<DataColumn> columns = [
       DataColumn(label: Text('ACTION')),
       DataColumn(label: Text('Name')),
@@ -500,18 +443,18 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
       if (controller.addInvoiceTypeController.text != "Bill of Supply")
         DataColumn(label: Text('GST TEX')),
       DataColumn(label: Text('NETPRICE\n(INC. TEX)')),
-      if (controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")
-        ...[
-          DataColumn(label: Text('CGSTPER')),
-          DataColumn(label: Text('CGSTAMT')),
-          DataColumn(label: Text('SGSTPER')),
-          DataColumn(label: Text('SGSTAMT')),
-        ],
-      if (controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text != "CGST_SGST")
-        ...[
-          DataColumn(label: Text('IGSTPER')),
-          DataColumn(label: Text('IGSTAMT')),
-        ],
+      if (controller.addInvoiceTypeController.text != "Bill of Supply" &&
+          controller.addGstTypeController.text == "CGST_SGST") ...[
+        DataColumn(label: Text('CGSTPER')),
+        DataColumn(label: Text('CGSTAMT')),
+        DataColumn(label: Text('SGSTPER')),
+        DataColumn(label: Text('SGSTAMT')),
+      ],
+      if (controller.addInvoiceTypeController.text != "Bill of Supply" &&
+          controller.addGstTypeController.text != "CGST_SGST") ...[
+        DataColumn(label: Text('IGSTPER')),
+        DataColumn(label: Text('IGSTAMT')),
+      ],
       DataColumn(label: Text('TAXABLE AMOUNT')),
     ];
 
@@ -535,18 +478,18 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
             if (controller.addInvoiceTypeController.text != "Bill of Supply")
               DataCell(Text(data.gstcodeId.toString())),
             DataCell(Text(data.netPriceINCTax.toString())),
-            if (controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")
-              ...[
-                DataCell(Text(data.cgstPer.toString())),
-                DataCell(Text(data.cgstAmount.toString())),
-                DataCell(Text(data.sgstPer.toString())),
-                DataCell(Text(data.sgstAmount.toString())),
-              ],
-            if (controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text != "CGST_SGST")
-              ...[
-                DataCell(Text(data.igstPer.toString())),
-                DataCell(Text(data.igstAmount.toString())),
-              ],
+            if (controller.addInvoiceTypeController.text != "Bill of Supply" &&
+                controller.addGstTypeController.text == "CGST_SGST") ...[
+              DataCell(Text(data.cgstPer.toString())),
+              DataCell(Text(data.cgstAmount.toString())),
+              DataCell(Text(data.sgstPer.toString())),
+              DataCell(Text(data.sgstAmount.toString())),
+            ],
+            if (controller.addInvoiceTypeController.text != "Bill of Supply" &&
+                controller.addGstTypeController.text != "CGST_SGST") ...[
+              DataCell(Text(data.igstPer.toString())),
+              DataCell(Text(data.igstAmount.toString())),
+            ],
             DataCell(Text(data.taxableAmount.toString())),
           ];
 
@@ -651,7 +594,7 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
     } else {
       filteredItems = Constants.itemList
           .where((item) =>
-          item.itemName!.toLowerCase().contains(query.toLowerCase()))
+              item.itemName!.toLowerCase().contains(query.toLowerCase()))
           .toList();
     }
     controller.update();
@@ -783,7 +726,8 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        Constants.gstList[index].gstTaxName ?? "",
+                                        Constants.gstList[index].gstTaxName ??
+                                            "",
                                       ),
                                     ),
                                   );
@@ -974,11 +918,10 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
                       Gap(25),
                       CommonButton(
                         btnName: AppString.save,
-                        onTap: () async{
+                        onTap: () async {
                           controller.itemList.add(SaleOrderDetails(
                             itemId: filteredItem.itemid,
                             itemName: filteredItem.itemName,
-                            // itemDescription: controller.itemDesController.text,
                             unit: controller.itemUnitController.text,
                             qty:
                                 double.parse(controller.itemQtyController.text),
@@ -1065,68 +1008,8 @@ class SalesOrderAddView extends GetView<SalesOrderController> {
                           ));
 
                           await Future.delayed(Duration(milliseconds: 500));
-
-                          // 🔹 Now fetch the updated sales order list
                           controller.calculateGstAndDiscount();
-                          // controller.update();
                           Get.back();
-                          // controller.total =
-                          //     (int.parse(controller.itemQtyController.text) *
-                          //         double.parse(
-                          //             controller.itemPriceController.text))
-                          //         .toStringAsFixed(2)
-                          //         .toString();
-                          // controller.discountTotal =
-                          //     controller.itemTotalDiscountController.text;
-                          // controller.sGstTotal =
-                          //     controller.itemSGstAmtController.text;
-                          // controller.cGstTotal =
-                          //     controller.itemCGstAmtController.text;
-                          // controller.iGstTotal =
-                          //     controller.itemIGstAmtController.text;
-                          // controller.iGstTotal =
-                          //     controller.itemIGstAmtController.text;
-                          // controller.totalItem =
-                          //     (controller.itemList.length + 1).toString();
-                          // controller.netTotal =
-                          //     controller.itemNetAmountController.text;
-                          // controller.itemList.add(SaleOrderDetails(
-                          //   itemId: filteredItem.itemid,
-                          //   itemName: filteredItem.itemName,
-                          //   unit: controller.itemUnitController.text,
-                          //   qty: double.parse(controller.itemQtyController.text),
-                          //   price: double.parse(
-                          //       controller.itemPriceController.text),
-                          //   discountPer: double.parse(
-                          //       controller.itemDiscountPerController.text),
-                          //   discount: double.parse(
-                          //       controller.itemDiscountController.text),
-                          //   totalDiscount: double.parse(
-                          //       controller.itemTotalDiscountController.text),
-                          //   gstcodeId: controller.gstId,
-                          //   netPriceINCTax: double.parse(
-                          //       controller.itemNetPriceController.text),
-                          //   cgstPer: double.parse(
-                          //       controller.itemCGstPerController.text),
-                          //   cgstAmount: double.parse(
-                          //       controller.itemCGstAmtController.text),
-                          //   sgstPer: double.parse(
-                          //       controller.itemSGstPerController.text),
-                          //   sgstAmount: double.parse(
-                          //       controller.itemSGstAmtController.text),
-                          //   igstPer: double.parse(
-                          //       controller.itemIGstPerController.text),
-                          //   igstAmount: double.parse(
-                          //       controller.itemIGstAmtController.text),
-                          //   taxableAmount: double.parse(
-                          //       controller.itemTaxablePriceController.text),
-                          //   netAmount: double.parse(
-                          //       controller.itemNetAmountController.text),
-                          //   grossAmount: double.parse(
-                          //       controller.itemGrossAmountController.text),
-                          // ));
-                          // controller.calculateGstAndDiscount();
-                          // Get.back();
                         },
                       ),
                     ],

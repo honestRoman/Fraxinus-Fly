@@ -100,18 +100,6 @@ class QuotationController extends GetxController {
     '3%',
   ];
 
-  void filterItems(String query) {
-    if (query.isEmpty) {
-      filteredCustomer = Constants.customerList;
-    } else {
-      filteredCustomer = Constants.customerList
-          .where((customer) => customer.customerName!.toLowerCase()
-          .contains(query.toLowerCase()))
-          .toList();
-    }
-    update();
-  }
-
   void selectCustomerFromList(int index) {
     customerController.text = filteredCustomer[index].customerName ?? "";
     customerId = filteredCustomer[index].customerID ?? 0;
@@ -125,7 +113,6 @@ class QuotationController extends GetxController {
     Get.back();
     update();
   }
-
 
   List<QuotationData> quotationList = [];
 
@@ -752,52 +739,3 @@ class QuotationController extends GetxController {
   }
 }
 
-class commonModel {
-  final String? itemName;
-  final String? itemCode;
-  final String? unitCode;
-  final String? basicPrice;
-  final String? subBrand;
-  final String? purchasePrice;
-  final String? purchaseVatAmt;
-  final String? stockQty;
-  final String? category;
-  final String? discount;
-  final String? branchName;
-  final String? subcategory;
-  final String? barCodeNo;
-  final String? itemValue;
-  final String? action;
-  final String? invoiceSerial;
-  final String? date;
-  final String? customerName;
-  final String? contactNumber;
-  final String? invoiceType;
-  final String? netAmount;
-  final String? gstIn;
-
-  commonModel({
-    this.itemName,
-    this.itemCode,
-    this.barCodeNo,
-    this.unitCode,
-    this.purchasePrice,
-    this.subcategory,
-    this.category,
-    this.subBrand,
-    this.discount,
-    this.itemValue,
-    this.basicPrice,
-    this.branchName,
-    this.stockQty,
-    this.purchaseVatAmt,
-    this.action,
-    this.invoiceSerial,
-    this.date,
-    this.customerName,
-    this.contactNumber,
-    this.invoiceType,
-    this.netAmount,
-    this.gstIn,
-  });
-}

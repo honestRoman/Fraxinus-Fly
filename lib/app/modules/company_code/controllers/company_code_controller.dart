@@ -69,14 +69,6 @@ class CompanyCodeController extends GetxController {
     );
   }
 
-  String getOtpCode() {
-    String otp = '';
-    for (var controller in codeController) {
-      otp += controller.text;
-    }
-    return otp;
-  }
-
   var code = "";
 
   Future<void> apiCallGetCompanyList(BuildContext context) async {

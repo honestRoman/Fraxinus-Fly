@@ -38,7 +38,6 @@ class PayableView extends GetView<OutstandingController> {
           btnName: AppString.downloadPdf,
           onTap: () {
             controller.genaratePDFApi();
-            // Get.toNamed(Routes.SHOW_REPORT);
           },
         ),
         Gap(30),
@@ -58,7 +57,6 @@ class PayableView extends GetView<OutstandingController> {
           DataColumn(label: Text('OTUSTANDING')),
           DataColumn(label: Text('ADVANCED PAID')),
           DataColumn(label: Text('CITY')),
-       // DataColumn(label: Text('ZOOM ID')),
           DataColumn(label: Text('GROUP')),
         ],
         rows: List.generate(
@@ -70,7 +68,6 @@ class PayableView extends GetView<OutstandingController> {
                 DataCell(Text(controller.outStandingPayableList[index].outstanding.toString())),
                 DataCell(Text(controller.outStandingPayableList[index].advancePaid.toString())),
                 DataCell(Text(controller.outStandingPayableList[index].city ?? "")),
-                // DataCell(Text("")),
                 DataCell(Text(controller.outStandingPayableList[index].group ?? "")),
               ],
             );

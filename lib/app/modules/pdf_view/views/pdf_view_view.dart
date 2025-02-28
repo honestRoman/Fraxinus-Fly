@@ -1,11 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
 import '../controllers/pdf_view_controller.dart';
 
 class PdfViewView extends GetView<PdfViewController> {
@@ -35,14 +32,15 @@ class PdfViewView extends GetView<PdfViewController> {
                   ? SfPdfViewer.network(
                       controller.pdfContent,
                       pageLayoutMode: PdfPageLayoutMode.continuous,
-            interactionMode: PdfInteractionMode.pan,
+                      interactionMode: PdfInteractionMode.pan,
                     )
                   : (File(controller.generatedPdfFilePath).existsSync()
                       ? SfPdfViewer.file(
                           File(
                             controller.generatedPdfFilePath,
                           ),
-                          pageLayoutMode: PdfPageLayoutMode.continuous,)
+                          pageLayoutMode: PdfPageLayoutMode.continuous,
+                        )
                       : Center(child: Text("File not found!")))
               : Center(child: CircularProgressIndicator()),
         );

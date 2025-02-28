@@ -1,5 +1,4 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
 import '../commons/all.dart';
 
 class Loading{

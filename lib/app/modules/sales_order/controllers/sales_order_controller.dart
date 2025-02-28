@@ -114,7 +114,7 @@ class SalesOrderController extends GetxController {
             children: [
               Gap(20),
               Text(
-                "Search Quotation",
+                "Search Sales Order",
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: FontFamily.semiBold,
@@ -268,11 +268,6 @@ class SalesOrderController extends GetxController {
   }
 
   List<String> filteredItems = [];
-  List<String> customerName = [
-    '3 STAR ADVERTISING',
-    'A.JITENDERKUMAR & CO.',
-    'AADARSH ASSOCIATES',
-  ];
 
   List<String> statusList = [
     'Open',
@@ -307,54 +302,7 @@ class SalesOrderController extends GetxController {
     update();
   }
 
-
   List<QuotationData> quotationList = [];
-
-  void selectLedger() {
-    filteredItems = customerName;
-    Get.bottomSheet(
-      GetBuilder<SalesOrderController>(
-        builder: (controller) {
-          return DecoratedBox(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: Column(
-                children: [
-                  CommonTextField(
-                    controller: searchController,
-                    borderRadius: 12,
-                    prefix: Icon(Icons.search),
-                    onChanged: (p0) {
-                      filterItems(p0);
-                    },
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: filteredItems.length,
-                      shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                            onTap: () {
-                              customerController.text = filteredItems[index];
-                              controller.update();
-                              Get.back();
-                            },
-                            child: Text(filteredItems[index]));
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
 
   collapse() {
     int newKey = 0;
@@ -387,18 +335,6 @@ class SalesOrderController extends GetxController {
         endDateController.text = date;
       }
     }
-  }
-
-  void filterCustomer(String query) {
-    if (query.isEmpty) {
-      filteredCustomer = Constants.customerList;
-    } else {
-      filteredCustomer = Constants.customerList
-          .where((item) =>
-              item.customerName!.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    }
-    update();
   }
 
   void selectCustomer() {
@@ -843,44 +779,6 @@ class SalesOrderController extends GetxController {
     if (model.statusCode == 200) {
       Get.toNamed(Routes.PDF_VIEW, arguments: model.data!.downloadurl);
       update();
-    }
-  }
-
-  Future<void> downloadFile(var filePath, var documentUrl) async {
-    try {
-      final filename = filePath;
-      String dir = "/storage/emulated/0/Download";
-
-      if (await File('$dir/$filename').exists()) {
-        return;
-      }
-
-      String url = documentUrl;
-      var request = await HttpClient().getUrl(Uri.parse(url));
-      var response = await request.close();
-
-      if (response.statusCode == 200) {
-        File file = File('$dir/$filename');
-        var fileSink = file.openWrite();
-
-        await for (var chunk in response) {
-          fileSink.add(chunk);
-        }
-
-        await fileSink.close();
-
-        Utils().showToast(
-            message: "File downloaded successfully to ${file.path}",
-            context: Get.context!);
-      } else {
-        Utils().showToast(
-            message: "Failed to download file",
-            context: Get.context!);
-      }
-    } catch (err) {
-      Utils().showToast(
-          message: "Failed to download file",
-          context: Get.context!);
     }
   }
 }

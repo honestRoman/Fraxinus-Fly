@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:fraxinusfly/app/routes/app_pages.dart';
 import 'package:intl/intl.dart';
 import '../../../api_common/api_function.dart';
@@ -105,22 +103,5 @@ class OutstandingController extends GetxController {
       context: Get.context!,
     );
     Get.toNamed(Routes.PDF_VIEW, arguments: data);
-  }
-
-  downloadFile(var filePath, var documentUrl) async {
-    try {
-      final filename = filePath;
-      String dir = "/storage/emulated/0/Download";
-      if (await File('$dir/$filename').exists()) return File('$dir/$filename');
-
-      String url = documentUrl;
-      var request = await HttpClient().getUrl(Uri.parse(url));
-      var response = await request.close();
-      var bytes = await consolidateHttpClientResponseBytes(response);
-      File file = new File('$dir/$filename');
-      await file.writeAsBytes(bytes);
-    }
-    catch (err) {
-    }
   }
 }

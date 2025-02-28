@@ -1,10 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:fraxinusfly/app/commons/all.dart';
 import 'package:gap/gap.dart';
-
 import '../../../data/common_widget/common_button.dart';
 import '../../../data/common_widget/common_textfeild.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/sale_register_controller.dart';
 
 class SaleRegisterView extends GetView<SaleRegisterController> {
@@ -92,15 +90,14 @@ class SaleRegisterView extends GetView<SaleRegisterController> {
                       size: 20,
                     )),
               ),
-              if(controller.saleRegisterList.isNotEmpty)
-              Gap(20),
-              if(controller.saleRegisterList.isNotEmpty)
-              CommonButton(
-                btnName: AppString.downloadPdf,
-                onTap: () {
-                  controller.genaratePDFApi();
-                },
-              ),
+              if (controller.saleRegisterList.isNotEmpty) Gap(20),
+              if (controller.saleRegisterList.isNotEmpty)
+                CommonButton(
+                  btnName: AppString.downloadPdf,
+                  onTap: () {
+                    controller.genaratePDFApi();
+                  },
+                ),
               Gap(20),
               tableView(),
             ],
@@ -137,7 +134,7 @@ class SaleRegisterView extends GetView<SaleRegisterController> {
         ],
         rows: List.generate(
           controller.saleRegisterList.length,
-              (index) {
+          (index) {
             return DataRow(
               cells: <DataCell>[
                 DataCell(
@@ -155,16 +152,16 @@ class SaleRegisterView extends GetView<SaleRegisterController> {
                     Text(controller.saleRegisterList[index].totQty.toString())),
                 DataCell(Text(controller.saleRegisterList[index].gstTaxableAmt
                     .toString())),
-                DataCell(Text(
-                    controller.saleRegisterList[index].netPayableAmount
-                        .toString())),
+                DataCell(Text(controller
+                    .saleRegisterList[index].netPayableAmount
+                    .toString())),
                 DataCell(
                     Text(controller.saleRegisterList[index].dueDate ?? "")),
                 DataCell(
                     Text(controller.saleRegisterList[index].salesPerson ?? "")),
-                DataCell(Text(
-                    controller.saleRegisterList[index].totalOutstanding
-                        .toString())),
+                DataCell(Text(controller
+                    .saleRegisterList[index].totalOutstanding
+                    .toString())),
                 DataCell(Text(
                     controller.saleRegisterList[index].creditDays.toString())),
                 DataCell(Text(controller.saleRegisterList[index].state ?? "")),

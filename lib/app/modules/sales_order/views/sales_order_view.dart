@@ -1,10 +1,8 @@
-import 'package:flutter/gestures.dart';
 import 'package:fraxinusfly/app/modules/sales_order/views/sales_order_add_view.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import '../../../commons/all.dart';
 import '../../../data/common_widget/common_button.dart';
-import '../../quotation/controllers/quotation_controller.dart';
 import '../../quotation/model/quoation_list_model.dart';
 import '../controllers/sales_order_controller.dart';
 
@@ -245,7 +243,8 @@ class SalesOrderView extends GetView<SalesOrderController> {
                                                   controller.isUpdate = true;
                                                   controller.quotationDataApi(
                                                       model.salesOrderID ?? 0);
-                                                  controller.saleId = (model.salesOrderID ?? 0)
+                                                  controller.saleId =
+                                                      (model.salesOrderID ?? 0)
                                                           .toString();
                                                   controller.update();
                                                 },
@@ -259,8 +258,6 @@ class SalesOrderView extends GetView<SalesOrderController> {
                                               onTap: () {
                                                 controller.quotationPDFApi(
                                                     model.salesOrderID ?? 0);
-                                                // controller.isUpdate = true;
-                                                // controller.quId = (model.quoteId ?? 0).toString();
                                                 controller.update();
                                               },
                                               child:

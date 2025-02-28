@@ -1,14 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/gestures.dart';
 import 'package:fraxinusfly/app/commons/all.dart';
-import 'package:fraxinusfly/app/commons/get_storage_data.dart';
 import 'package:fraxinusfly/app/data/common_widget/common_button.dart';
 import 'package:fraxinusfly/app/modules/bottom_bar/model/get_item_list.dart';
 import 'package:fraxinusfly/app/modules/quotation/controllers/quotation_controller.dart';
 import 'package:fraxinusfly/app/modules/quotation/model/quotation_model.dart';
 import 'package:gap/gap.dart';
-
 import '../../../data/common_widget/common_textfeild.dart';
 import '../../item_list/controllers/item_list_controller.dart';
 
@@ -338,70 +335,7 @@ class QuotationAddView extends GetView<QuotationController> {
     );
   }
 
-  // Widget itemData(QuotationController controller) {
-  //   return SingleChildScrollView(
-  //     padding: EdgeInsets.zero,
-  //     scrollDirection: Axis.horizontal,
-  //     dragStartBehavior: DragStartBehavior.start,
-  //     child: DataTable(
-  //       border: TableBorder.all(),
-  //       columns: <DataColumn>[
-  //         DataColumn(label: Text('ACTION')),
-  //         DataColumn(label: Text('Name')),
-  //         DataColumn(label: Text('UNIT')),
-  //         DataColumn(label: Text('QTY')),
-  //         DataColumn(label: Text('PRICE')),
-  //         DataColumn(label: Text('DISCOUNT(%)')),
-  //         DataColumn(label: Text('DISCOUNT')),
-  //         DataColumn(label: Text('TOTAL DISCOUNT')),
-  //         if(controller.addInvoiceTypeController.text != "Bill of Supply")...[DataColumn(label: Text('GST TEX')),],
-  //
-  //         DataColumn(label: Text('NETPRICE\n(INC. TEX)')),
-  //         if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[DataColumn(label: Text('CGSTPER')),],
-  //         if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[DataColumn(label: Text('CGSTAMT')),],
-  //         if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[DataColumn(label: Text('SGSTPER')),],
-  //         if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[DataColumn(label: Text('SGSTAMT')),],
-  //         if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text != "CGST_SGST")...[DataColumn(label: Text('IGSTPER')),],
-  //         if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text != "CGST_SGST")...[DataColumn(label: Text('IGSTAMT')),],
-  //
-  //         DataColumn(label: Text('TEXABLE\nAMOUNT')),
-  //       ],
-  //       rows: List.generate(
-  //         controller.itemList.length,
-  //         (index) {
-  //           QuotationDetails data = controller.itemList[index];
-  //           return DataRow(
-  //             cells: <DataCell>[
-  //               DataCell(Icon(Icons.delete)),
-  //               DataCell(Text(
-  //                 data.itemName ?? "",
-  //                 maxLines: 2,
-  //               )),
-  //               DataCell(Text(data.unit ?? "")),
-  //               DataCell(Text(data.qty.toString())),
-  //               DataCell(Text(data.price.toString())),
-  //               DataCell(Text(data.discountPer.toString())),
-  //               DataCell(Text(data.discount.toString())),
-  //               DataCell(Text(data.totalDiscount.toString())),
-  //               DataCell(Text(data.gstcodeId.toString())),
-  //               DataCell(Text(data.netPriceINCTax.toString())),
-  //               if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[DataCell(Text(data.cgstPer.toString())),],
-  //               if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[DataCell(Text(data.cgstAmount.toString())),],
-  //               if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[DataCell(Text(data.sgstPer.toString())),],
-  //               if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text == "CGST_SGST")...[DataCell(Text(data.sgstAmount.toString())),],
-  //               if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text != "CGST_SGST")...[DataCell(Text(data.igstPer.toString())),],
-  //               if(controller.addInvoiceTypeController.text != "Bill of Supply" && controller.addGstTypeController.text != "CGST_SGST")...[DataCell(Text(data.igstAmount.toString())),],
-  //               DataCell(Text(data.taxableAmount.toString())),
-  //             ],
-  //           );
-  //         },
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget itemData(QuotationController controller) {
-    // Define column list
     List<DataColumn> columns = [
       DataColumn(label: Text('ACTION')),
       DataColumn(label: Text('Name')),
@@ -555,7 +489,6 @@ class QuotationAddView extends GetView<QuotationController> {
     }
     controller.update();
   }
-
 
   addItemSheet(ItemData filteredItem) {
     controller.itemUnitController.text = filteredItem.unitCode ?? "";
@@ -904,70 +837,8 @@ class QuotationAddView extends GetView<QuotationController> {
                                 : (double.tryParse(controller.itemNetAmountController.text) ?? 0),
                             grossAmount: double.parse(controller.itemGrossAmountController.text),
                           ));
-
-
                           controller.calculateGstAndDiscount();
-                          // controller.calculateTotals();
-
                           Get.back();
-
-                          // controller.total =
-                          //     (int.parse(controller.itemQtyController.text) *
-                          //             double.parse(
-                          //                 controller.itemPriceController.text))
-                          //         .toStringAsFixed(2)
-                          //         .toString();
-                          // controller.discountTotal =
-                          //     controller.itemTotalDiscountController.text;
-                          // controller.sGstTotal =
-                          //     controller.itemSGstAmtController.text;
-                          // controller.cGstTotal =
-                          //     controller.itemCGstAmtController.text;
-                          // controller.iGstTotal =
-                          //     controller.itemIGstAmtController.text;
-                          // controller.iGstTotal =
-                          //     controller.itemIGstAmtController.text;
-                          // controller.totalItem = (controller.itemList.length + 1).toString();
-                          // controller.netTotal =
-                          //     controller.itemNetAmountController.text;
-                          // controller.itemList.add(QuotationDetails(
-                          //   itemId: filteredItem.itemid,
-                          //   itemName: filteredItem.itemName,
-                          //   itemDescription: controller.itemDesController.text,
-                          //   unit: controller.itemUnitController.text,
-                          //   qty: double.parse(controller.itemQtyController.text),
-                          //   price: double.parse(
-                          //       controller.itemPriceController.text),
-                          //   discountPer: double.parse(
-                          //       controller.itemDiscountPerController.text),
-                          //   discount: double.parse(
-                          //       controller.itemDiscountController.text),
-                          //   totalDiscount: double.parse(
-                          //       controller.itemTotalDiscountController.text),
-                          //   gstcodeId: 0,
-                          //   netPriceINCTax: double.parse(
-                          //       controller.itemNetPriceController.text),
-                          //   cgstPer: double.parse(
-                          //       controller.itemCGstPerController.text),
-                          //   cgstAmount: double.parse(
-                          //       controller.itemCGstAmtController.text),
-                          //   sgstPer: double.parse(
-                          //       controller.itemSGstPerController.text),
-                          //   sgstAmount: double.parse(
-                          //       controller.itemSGstAmtController.text),
-                          //   igstPer: double.parse(
-                          //       controller.itemIGstPerController.text),
-                          //   igstAmount: double.parse(
-                          //       controller.itemIGstAmtController.text),
-                          //   taxableAmount: double.parse(
-                          //       controller.itemTaxablePriceController.text),
-                          //   netAmount: double.parse(
-                          //       controller.itemNetAmountController.text),
-                          //   grossAmount: double.parse(
-                          //       controller.itemGrossAmountController.text),
-                          // ));
-                          // controller.update();
-                          // Get.back();
                         },
                       ),
                     ],

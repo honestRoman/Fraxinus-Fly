@@ -3,7 +3,6 @@ import 'package:fraxinusfly/app/commons/all.dart';
 import 'package:fraxinusfly/app/data/common_widget/common_button.dart';
 import 'package:fraxinusfly/app/data/common_widget/common_textfeild.dart';
 import 'package:gap/gap.dart';
-
 import '../controllers/ledger_statement_controller.dart';
 
 class LedgerStatementView extends GetView<LedgerStatementController> {
